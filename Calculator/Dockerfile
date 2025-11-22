@@ -2,9 +2,10 @@ FROM node:25-slim AS build
 
 WORKDIR /app
 
-COPY app .
+COPY app/package*.json ./
 
-RUN set -eux; \
+RUN --mount=type=cache,target=/root/.npm \
+  set -eux; \
   npm install
 
 RUN set -eux; \
