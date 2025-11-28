@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Button from './atoms/Button'
 
 export default function Calculator() {
   const [display, setDisplay] = useState("0");
@@ -64,18 +65,33 @@ export default function Calculator() {
 
       <div className="grid grid-cols-4 gap-2">
         {buttons.map((btn) => (
-          <button
-            key={btn}
-            onClick={() => {
-              if (!isNaN(Number(btn))) handleNumber(btn);
-              else if (btn == "AC") clear();
-              else if (btn == "=") calculate();
-              else handleOperator(btn);
-            }}
-            className="p-4 bg-gray-200 rounded hover:bg-gray-300 transition"
-          >
+        <Button
+          key={btn}
+          className="text-red-500"
+          onClick={() => {
+              if (!isNaN(Number(btn)))
+                handleNumber(btn);
+              else if (btn == "AC")
+                clear();
+              else if (btn == "=")
+                calculate();
+              else
+                handleOperator(btn);
+            }}>
             {btn}
-          </button>
+        </Button>
+//          <button
+//            key={btn}
+//            onClick={() => {
+//              if (!isNaN(Number(btn))) handleNumber(btn);
+//              else if (btn == "AC") clear();
+//              else if (btn == "=") calculate();
+//              else handleOperator(btn);
+//            }}
+//            className="p-4 bg-gray-200 rounded hover:bg-gray-300 transition"
+//          >
+//            {btn}
+//          </button>
         ))}
       </div>
     </div >

@@ -11,7 +11,13 @@ build:
 	-t calculator .
 
 run:
-	docker run -d -p 3000:3000 -v calculator_node_modules:/app/node_modules -v ${PWD}/app:/app \
+	docker run -d -p 3000:3000 \
+		-v calculator_node_modules:/app/node_modules \
+		-v ${PWD}/app:/app \
+		-e http_proxy=${http_proxy} \
+		-e https_proxy=${https_proxy} \
+		-e HTTP_PROXY=${HTTP_PROXY} \
+		-e HTTPS_PROXY=${HTTPS_PROXY} \
 		--name calculator_container calculator
 
 stop:
